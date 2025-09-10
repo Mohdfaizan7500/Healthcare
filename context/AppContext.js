@@ -1,7 +1,13 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { Alert, StyleSheet, Text, View } from 'react-native'
 import React, { createContext, useEffect, useState } from 'react'
 import AsyncStorage from "@react-native-async-storage/async-storage";
-
+import {
+    signInWithEmailAndPassword,
+    createUserWithEmailAndPassword,
+    sendPasswordResetEmail,
+    signOut
+} from 'firebase/auth';
+import { auth } from '../firebase';
 export const AppContext = createContext();
 
 
@@ -10,13 +16,19 @@ export const AppProvider = ({ children }) => {
     const [isLoading, setIsLoading] = useState(false);
     const [userToken, setUserToken] = useState(null);
 
-    const Login = async () => {
+    const Login = async (email, password) => {
+        let data = {
+
+        }
         try {
             setIsLoading(true);
-            await AsyncStorage.setItem('userToken', "yuryuruy");
-            setUserToken("yuryuruy");
+            const userCredential = await signInWithEmailAndPassword(auth, email, password);
+            console.log(userCredential.user.accessToken)
+            await AsyncStorage.setItem('userToken', JSON.stringify(userCredential.user.accessToken));
+            setUserToken(userCredential.user.accessToken);
             setIsLoading(false);
         } catch (error) {
+            Alert.alert('Alert','Incorrect email or password')
             console.error("Error logging in:", error);
             setIsLoading(false);
         } finally {
@@ -27,7 +39,8 @@ export const AppProvider = ({ children }) => {
     const logout = async () => {
         try {
             setIsLoading(true);
-            // AsyncStorage.removeItem('userToken');
+            await signOut(auth);
+            AsyncStorage.removeItem('userToken');
             setUserToken(null);
             setIsLoading(false);
         } catch (error) {

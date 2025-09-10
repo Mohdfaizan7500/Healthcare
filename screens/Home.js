@@ -13,6 +13,7 @@ const Home = () => {
 
 
   const logouthandle = () => {
+    console.log('ydtftyt')
     Alert.alert(
       'Alert',
       'Do you want to logout?',
@@ -41,9 +42,9 @@ const Home = () => {
           </Pressable>
           <HealthLogo />
         </View>
-        <Pressable style={styles.MiceCircule} onPress={logouthandle}>
+        <TouchableOpacity style={styles.MiceCircule} onPress={logouthandle}>
           <MiceIcon width={s(20)} height={s(20)} />
-        </Pressable>
+        </TouchableOpacity>
       </View>
       <ScrollView style={{ width: "100%", zIndex: 1 }}  >
 

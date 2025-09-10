@@ -24,7 +24,7 @@ const LoginScreen = ({ navigation }) => {
         }
 
         ToastAndroid.show("Login Successful", ToastAndroid.SHORT);
-        Login();
+        Login(email,password);
         setEmail('');
         setPassword('');
     }
@@ -34,7 +34,7 @@ const LoginScreen = ({ navigation }) => {
             <StatusBar backgroundColor={BRAND.background} />
             <Text style={styles.loginTitle}>LOGIN</Text>
             <Text style={styles.healthcareTitle}>Healthcare</Text>
-            
+
             {/* Email Input */}
             <View style={[styles.inputContainer, { marginTop: vs(60) }]}>
                 <EmailIcon width={s(20)} height={vs(20)} />

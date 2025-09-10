@@ -3,6 +3,7 @@ import React from 'react'
 import { BRAND } from '../constants/color'
 import { BackIcon, StarIcon } from '../Assets/svg/icons'
 import { s, vs } from 'react-native-size-matters'
+import FastImage from 'react-native-fast-image'
 
 const Chat = () => {
 
@@ -24,7 +25,7 @@ const Chat = () => {
             distance: 9,
             review: 160,
             rating: 3.5,
-            image: require('../Assets/image/medical.png')
+            image: require('../Assets/image/image1.jpg')
         },
         {
             id: 3,
@@ -40,7 +41,7 @@ const Chat = () => {
             distance: 12,
             review: 110,
             rating: 5.5,
-            image: require('../Assets/image/medical.png')
+            image: require('../Assets/image/image1.jpg')
         }
     ]
     return (
@@ -49,9 +50,11 @@ const Chat = () => {
                 <TouchableOpacity onPress={() => { ToastAndroid.show('Back Click', ToastAndroid.SHORT) }}>
                     <BackIcon width={s(30)} height={s(30)} />
                 </TouchableOpacity>
-                <Image source={require('../Assets/image/location.gif')}
+                {/* <Image source={require('../Assets/image/location.gif')}
                     style={{ width: s(35), height: s(35) }}
-                />
+                /> */}
+                <FastImage source={require('../Assets/image/location.gif')}
+                    style={{ width: s(35), height: s(35) }} />
                 <Text style={styles.Title}>Mohali</Text>
             </View>
 
@@ -89,15 +92,15 @@ const Chat = () => {
             <View style={styles.Buttonconatiner}>
                 <Pressable style={{ alignItems: "center", justifyContent: "center" }}
                     onPress={() => { ToastAndroid.show('Upload link clicked', ToastAndroid.SHORT) }}>
-                    <Image source={require('../Assets/image/LinkFile.gif')}
+                    <FastImage source={require('../Assets/image/LinkFile.gif')}
                         style={{ width: s(50), height: s(50) }}
                     />
                     <Text style={styles.Label}>Upload Link</Text>
                 </Pressable>
                 <Pressable style={{ alignItems: "center", justifyContent: "center" }}
                     onPress={() => { ToastAndroid.show('Upload File clicked', ToastAndroid.SHORT) }}>
-                    <Image source={require('../Assets/image/Download.gif')}
-                        style={{ width: s(50), height: s(50) }}
+                    <FastImage source={require('../Assets/image/Download.gif')}
+                        style={{ width: s(50), height: s(50)}}
                     />
                     <Text style={styles.Label}>Upload File</Text>
                 </Pressable>
